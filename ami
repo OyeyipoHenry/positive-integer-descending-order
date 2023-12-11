@@ -1,0 +1,35 @@
+def is_prime(n):
+  """
+  Check if a number is prime.
+  """
+  if n <= 1:
+    return False
+  for i in range(2, int(n**0.5) + 1):
+    if n % i == 0:
+      return False
+  return True
+
+def prime_factors(n):
+  """
+  Get the prime factors of a number.
+  """
+  stack = []
+  while n > 1:
+    for i in range(2, n + 1):
+      if is_prime(i) and n % i == 0:
+        stack.append(i)
+        n //= i
+        break
+  return stack
+
+def main():
+  """
+  Print the prime factors of a number.
+  """
+  n = int(input("Enter a positive integer: "))
+  stack = prime_factors(n)
+  while stack:
+    print(stack.pop())
+
+if __name__ == "__main__":
+  main()
